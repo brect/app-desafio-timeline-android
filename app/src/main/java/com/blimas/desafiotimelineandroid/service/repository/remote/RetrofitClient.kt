@@ -1,4 +1,4 @@
-package com.blimas.desafiotimelineandroid.service.repository
+package com.blimas.desafiotimelineandroid.service.repository.remote
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -15,7 +15,7 @@ class RetrofitClient private constructor(){
 
             val httpClient = OkHttpClient.Builder()
 
-            if (!::mRetrofit.isInitialized){
+            if (!Companion::mRetrofit.isInitialized){
                 mRetrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .client(httpClient.build())
@@ -28,7 +28,8 @@ class RetrofitClient private constructor(){
         }
 
         fun <S> createService(serviceClass: Class<S>): S {
-            return getRetrofitInstance().create(serviceClass)
+            return getRetrofitInstance()
+                .create(serviceClass)
         }
     }
 }
