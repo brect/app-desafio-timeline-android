@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/imageLogoItau"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="wrap_content"
+        android:layout_width="128dp"
         android:src="@drawable/logo_itau"
         app:layout_constraintVertical_bias="0.4"
         android:layout_marginBottom="32dp"
