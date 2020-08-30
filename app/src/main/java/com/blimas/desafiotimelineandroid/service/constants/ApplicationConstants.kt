@@ -6,4 +6,9 @@ class ApplicationConstants {
         const val SUCCESS = 200
     }
 
+    object BUNDLE {
+        const val LANCAMENTO_ID = "lancamentoId"
+    }
+
+
 }

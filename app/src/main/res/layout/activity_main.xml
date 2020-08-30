@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="Lançamentos"
-        android:textColor="#F1731F"
+        android:textColor="@color/background_itau"
         app:layout_constraintTop_toBottomOf="@id/imageLogoItau"
         app:layout_constraintBottom_toTopOf="@id/buttonLevelTwo"
         app:layout_constraintLeft_toLeftOf="parent"
