@@ -8,7 +8,7 @@ class LancamentoModel {
     var id: Int = 0
 
     @SerializedName("valor")
-    var valor: Float = 0.0F
+    var valor: Double = 0.0
 
     @SerializedName("origem")
     var origem: String = ""
