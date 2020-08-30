@@ -8,6 +8,7 @@ class ApplicationConstants {
 
     object BUNDLE {
         const val LANCAMENTO_ID = "lancamentoId"
+        const val CATEGORIA_VALUE = "categoria"
     }
 
 

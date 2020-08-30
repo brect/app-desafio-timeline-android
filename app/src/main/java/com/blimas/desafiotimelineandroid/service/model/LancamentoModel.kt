@@ -21,23 +21,4 @@ data class LancamentoModel(
 
     @SerializedName("mes_lancamento")
     var mes_lancamento: Int = 0
-) : Parcelable {
-
-
-//    @SerializedName("id")
-//    this.id: Int = 0
-//
-//    @SerializedName("valor")
-//    var valor: Double = 0.0
-//
-//    @SerializedName("origem")
-//    var origem: String = ""
-//
-//    @SerializedName("categoria")
-//    var categoria: Int = 0
-//
-//    @SerializedName("mes_lancamento")
-//    var mes_lancamento: Int = 0
-
-
-}
+) : Parcelable

@@ -10,12 +10,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blimas.desafiotimelineandroid.R
+import com.blimas.desafiotimelineandroid.service.constants.ApplicationConstants.BUNDLE.CATEGORIA_VALUE
 import com.blimas.desafiotimelineandroid.service.constants.ApplicationConstants.BUNDLE.LANCAMENTO_ID
 import com.blimas.desafiotimelineandroid.service.listener.LancamentosListener
 import com.blimas.desafiotimelineandroid.service.model.LancamentoModel
 import com.blimas.desafiotimelineandroid.view.adapter.LancamentosAdapter
 import com.blimas.desafiotimelineandroid.viewmodel.LancamentosViewModel
 import kotlinx.android.synthetic.main.activity_lancamentos.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class LancamentosActivity : AppCompatActivity() {
 
@@ -27,22 +29,26 @@ class LancamentosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lancamentos)
 
+        setSupportActionBar(my_toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        my_toolbar.title = "Lançamentos"
+
         mViewModel = ViewModelProvider(this).get(LancamentosViewModel::class.java)
+
 
         val recycler = findViewById<RecyclerView>(R.id.recycler_lancamentos)
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = mAdapter
 
-        mListener = object : LancamentosListener{
+        mListener = object : LancamentosListener {
             override fun onItemClick(param: LancamentoModel) {
-                    val intent = Intent(applicationContext, DetalhesLancamentoActivity::class.java)
-                    val bundle = Bundle()
-                    bundle.putParcelable(LANCAMENTO_ID, param)
-                    intent.putExtras(bundle)
-                    startActivity(intent)
+                val intent = Intent(applicationContext, DetalhesLancamentoActivity::class.java)
+                val bundle = Bundle()
+                bundle.putParcelable(LANCAMENTO_ID, param)
+                bundle.putString(CATEGORIA_VALUE, mViewModel.getCategoria(param.categoria))
+                intent.putExtras(bundle)
+                startActivity(intent)
             }
-
-
         }
 
         observe()
@@ -51,17 +57,27 @@ class LancamentosActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         mAdapter.attachListener(mListener)
-        mViewModel.listAll()
+        mViewModel.getAllReleases()
+        mViewModel.getAllCategories()
     }
 
     private fun observe() {
         mViewModel.lancamentos.observe(this, Observer {
             if (it.count() > 0) {
                 mAdapter.updateListener(it)
-            }else{
-                Toast.makeText(this, getString(R.string.ERROR_UNEXPECTED), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, getString(R.string.ERROR_UNEXPECTED), Toast.LENGTH_SHORT)
+                    .show()
             }
             progress_bar.visibility = View.GONE
+        })
+
+        mViewModel.categorias.observe(this, Observer {
+
+        })
+
+        mViewModel.validation.observe(this, Observer {
+            Toast.makeText(this, it.errorMessage(), Toast.LENGTH_SHORT).show()
         })
     }
 }

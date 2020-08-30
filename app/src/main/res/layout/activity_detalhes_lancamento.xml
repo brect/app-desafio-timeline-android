@@ -4,23 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:background="#CCC4C4C4"
     tools:context=".view.activity.DetalhesLancamentoActivity">
 
-    <TextView
-        android:id="@+id/lbl_text_Origem"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_lancamentos"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Origem: "
-        app:layout_constraintRight_toLeftOf="@id/text_origem"
-        tools:layout_editor_absoluteY="67dp" />
+        app:layout_constraintVertical_chainStyle="spread" />
+
 
     <TextView
-        android:id="@+id/text_origem"
-        android:layout_width="wrap_content"
+        android:id="@+id/container_title_detalhes"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Texto Origem"
-        app:layout_constraintTop_toTopOf="@id/lbl_text_Origem"
-        app:layout_constraintLeft_toRightOf="@id/lbl_text_Origem" />
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="32dp"
+        android:text="@string/lancamento_detalhado"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/container_card"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:background="@drawable/shape_card"
+        android:elevation="1dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_title_detalhes">
+
+        <TextView
+            android:id="@+id/text_origem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Texto Origem"
+            android:textSize="32sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginHorizontal="32dp"
+            android:gravity="center"
+            android:text="Categoria"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_origem" />
+
+        <TextView
+            android:id="@+id/text_valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Texto Origem"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_categoria" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

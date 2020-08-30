@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container_item_lancamento"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_item_lancamento"
     android:layout_width="match_parent"
-    android:layout_marginHorizontal="8dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp">
 
     <TextView
         android:id="@+id/text_origem"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="texto"
+        android:textSize="22sp"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/text_valor"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -22,10 +25,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="origin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/text_origem"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginRight="8dp"
+        app:layout_constraintTop_toBottomOf="@id/text_origem"
+        app:layout_constraintEnd_toEndOf="@+id/text_origem"
+        tools:layout_editor_absoluteY="46dp" />
 
     <View
         android:id="@+id/view"
@@ -33,6 +36,6 @@
         android:layout_height="2dp"
         android:layout_marginTop="8dp"
         android:background="#ececec"
-        app:layout_constraintTop_toBottomOf="@id/text_origem" />
+        app:layout_constraintTop_toBottomOf="@id/text_valor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
