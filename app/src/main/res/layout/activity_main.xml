@@ -17,15 +17,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/buttonLevelOne"
+        app:layout_constraintBottom_toTopOf="@id/button_lancamentos"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/buttonLevelOne"
+        android:id="@+id/button_lancamentos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Nível 1"
+        android:text="Lançamentos"
         android:textColor="#F1731F"
         app:layout_constraintTop_toBottomOf="@id/imageLogoItau"
         app:layout_constraintBottom_toTopOf="@id/buttonLevelTwo"
@@ -42,7 +42,7 @@
         app:layout_constraintBottom_toTopOf="@id/buttonLevelThree"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonLevelOne" />
+        app:layout_constraintTop_toBottomOf="@id/button_lancamentos" />
 
     <Button
         android:id="@+id/buttonLevelThree"
