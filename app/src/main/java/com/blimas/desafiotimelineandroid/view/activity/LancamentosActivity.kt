@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.blimas.desafiotimelineandroid.R
 import com.blimas.desafiotimelineandroid.service.constants.ApplicationConstants.BUNDLE.LANCAMENTO_ID
 import com.blimas.desafiotimelineandroid.service.listener.LancamentosListener
+import com.blimas.desafiotimelineandroid.service.model.LancamentoModel
 import com.blimas.desafiotimelineandroid.view.adapter.LancamentosAdapter
 import com.blimas.desafiotimelineandroid.viewmodel.LancamentosViewModel
 import kotlinx.android.synthetic.main.activity_lancamentos.*
@@ -33,13 +34,14 @@ class LancamentosActivity : AppCompatActivity() {
         recycler.adapter = mAdapter
 
         mListener = object : LancamentosListener{
-            override fun onItemClick(id: Int) {
-                val intent = Intent(applicationContext, DetalhesLancamentoActivity::class.java)
-                val bundle = Bundle()
-                bundle.putInt(LANCAMENTO_ID, id)
-                intent.putExtras(bundle)
-                startActivity(intent)
+            override fun onItemClick(param: LancamentoModel) {
+                    val intent = Intent(applicationContext, DetalhesLancamentoActivity::class.java)
+                    val bundle = Bundle()
+                    bundle.putParcelable(LANCAMENTO_ID, param)
+                    intent.putExtras(bundle)
+                    startActivity(intent)
             }
+
 
         }
 
@@ -57,9 +59,10 @@ class LancamentosActivity : AppCompatActivity() {
             if (it.count() > 0) {
                 mAdapter.updateListener(it)
             }else{
-                Toast.makeText(this, "Dados indisponíveis no momento", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.ERROR_UNEXPECTED), Toast.LENGTH_SHORT).show()
             }
             progress_bar.visibility = View.GONE
         })
     }
 }
+

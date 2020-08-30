@@ -23,7 +23,7 @@ class LancamentosViewHolder(itemView: View, val listener: LancamentosListener) :
         this.mTextValor.text = formatMoneyText(lancamentoModel.valor)
 
 
-        mContainerItem.setOnClickListener { listener.onItemClick(lancamentoModel.id) }
+        mContainerItem.setOnClickListener { listener.onItemClick(lancamentoModel) }
 
     }
 

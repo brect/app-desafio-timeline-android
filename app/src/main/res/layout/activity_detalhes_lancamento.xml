@@ -4,14 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     tools:context=".view.activity.DetalhesLancamentoActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/lbl_text_Origem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Origem: "
+        app:layout_constraintRight_toLeftOf="@id/text_origem"
         tools:layout_editor_absoluteY="67dp" />
+
+    <TextView
+        android:id="@+id/text_origem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Texto Origem"
+        app:layout_constraintTop_toTopOf="@id/lbl_text_Origem"
+        app:layout_constraintLeft_toRightOf="@id/lbl_text_Origem" />
 </androidx.constraintlayout.widget.ConstraintLayout>
