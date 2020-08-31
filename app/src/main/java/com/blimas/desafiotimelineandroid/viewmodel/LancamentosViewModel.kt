@@ -51,9 +51,4 @@ class LancamentosViewModel(application: Application) : AndroidViewModel(applicat
         })
     }
 
-    fun getCategoria(categoria: Int): String? {
-        return mCategoriasList.value?.get(categoria - 1)?.nome
-    }
-
-
 }

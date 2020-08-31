@@ -5,9 +5,7 @@ import com.blimas.desafiotimelineandroid.R
 import com.blimas.desafiotimelineandroid.service.constants.ApplicationConstants
 import com.blimas.desafiotimelineandroid.service.listener.ApiListener
 import com.blimas.desafiotimelineandroid.service.model.CategoriasModel
-import com.blimas.desafiotimelineandroid.service.model.LancamentoModel
 import com.blimas.desafiotimelineandroid.service.repository.remote.CategoriaService
-import com.blimas.desafiotimelineandroid.service.repository.remote.LancamentoService
 import com.blimas.desafiotimelineandroid.service.repository.remote.RetrofitClient
 import com.google.gson.Gson
 import retrofit2.Call

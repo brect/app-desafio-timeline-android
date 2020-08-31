@@ -18,13 +18,15 @@ class DetalhesLancamentoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhes_lancamento)
 
-        setSupportActionBar(my_toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        my_toolbar.title = ""
-
+        configToolbar()
         loadDataFromActivity()
     }
 
+    private fun configToolbar() {
+        setSupportActionBar(my_toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        my_toolbar.title = ""
+    }
 
     private fun loadDataFromActivity() {
         val bundle = intent.extras

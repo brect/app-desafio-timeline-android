@@ -11,5 +11,4 @@ class ApplicationConstants {
         const val CATEGORIA_VALUE = "categoria"
     }
 
-
 }

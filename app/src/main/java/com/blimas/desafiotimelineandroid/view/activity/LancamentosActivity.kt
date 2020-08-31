@@ -14,44 +14,42 @@ import com.blimas.desafiotimelineandroid.service.constants.ApplicationConstants.
 import com.blimas.desafiotimelineandroid.service.constants.ApplicationConstants.BUNDLE.LANCAMENTO_ID
 import com.blimas.desafiotimelineandroid.service.listener.LancamentosListener
 import com.blimas.desafiotimelineandroid.service.model.LancamentoModel
-import com.blimas.desafiotimelineandroid.view.adapter.LancamentosAdapter
+import com.blimas.desafiotimelineandroid.view.adapter.LancamentosSimplesAdapter
 import com.blimas.desafiotimelineandroid.viewmodel.LancamentosViewModel
-import kotlinx.android.synthetic.main.activity_lancamentos.*
+import kotlinx.android.synthetic.main.activity_lancamentos_simples.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class LancamentosActivity : AppCompatActivity() {
 
     private lateinit var mViewModel: LancamentosViewModel
-    private val mAdapter = LancamentosAdapter()
+    private val mAdapter = LancamentosSimplesAdapter()
     private lateinit var mListener: LancamentosListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lancamentos)
+        setContentView(R.layout.activity_lancamentos_simples)
 
-        setSupportActionBar(my_toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        my_toolbar.title = "Lançamentos"
+        configToolbar()
 
         mViewModel = ViewModelProvider(this).get(LancamentosViewModel::class.java)
 
+        setRecyclerAndAdapter()
+        openDetalhesLancamentos()
 
-        val recycler = findViewById<RecyclerView>(R.id.recycler_lancamentos)
-        recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter = mAdapter
+        observe()
+    }
 
+    private fun openDetalhesLancamentos() {
         mListener = object : LancamentosListener {
             override fun onItemClick(param: LancamentoModel) {
                 val intent = Intent(applicationContext, DetalhesLancamentoActivity::class.java)
                 val bundle = Bundle()
                 bundle.putParcelable(LANCAMENTO_ID, param)
-                bundle.putString(CATEGORIA_VALUE, mViewModel.getCategoria(param.categoria))
+                bundle.putString(CATEGORIA_VALUE, getCategoria(param.categoria))
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
         }
-
-        observe()
     }
 
     override fun onResume() {
@@ -59,6 +57,22 @@ class LancamentosActivity : AppCompatActivity() {
         mAdapter.attachListener(mListener)
         mViewModel.getAllReleases()
         mViewModel.getAllCategories()
+    }
+
+    private fun configToolbar() {
+        setSupportActionBar(my_toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        my_toolbar.title = "Lançamentos"
+    }
+
+    private fun setRecyclerAndAdapter() {
+        val recycler = findViewById<RecyclerView>(R.id.recycler_lancamentos)
+        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.adapter = mAdapter
+    }
+
+    fun getCategoria(categoria: Int): String? {
+        return mViewModel.categorias.value?.get(categoria - 1)?.nome
     }
 
     private fun observe() {
@@ -70,10 +84,6 @@ class LancamentosActivity : AppCompatActivity() {
                     .show()
             }
             progress_bar.visibility = View.GONE
-        })
-
-        mViewModel.categorias.observe(this, Observer {
-
         })
 
         mViewModel.validation.observe(this, Observer {

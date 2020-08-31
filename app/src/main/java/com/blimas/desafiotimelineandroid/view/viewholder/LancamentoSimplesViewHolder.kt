@@ -11,10 +11,11 @@ import com.blimas.desafiotimelineandroid.utils.FormatValues
 import java.text.NumberFormat
 import java.util.*
 
-class LancamentosViewHolder(itemView: View, val listener: LancamentosListener) :
+class LancamentoSimplesViewHolder(itemView: View, val listener: LancamentosListener) :
     RecyclerView.ViewHolder(itemView) {
 
-    private var mContainerItem: ConstraintLayout = itemView.findViewById(R.id.container_item_lancamento)
+    private var mContainerItem: ConstraintLayout =
+        itemView.findViewById(R.id.container_item_lancamento)
     private var mTextOrigem: TextView = itemView.findViewById(R.id.text_origem)
     private var mTextValor: TextView = itemView.findViewById(R.id.text_valor)
 
@@ -22,7 +23,6 @@ class LancamentosViewHolder(itemView: View, val listener: LancamentosListener) :
 
         this.mTextOrigem.text = lancamentoModel.origem
         this.mTextValor.text = FormatValues.formatMoneyText(lancamentoModel.valor)
-
 
         mContainerItem.setOnClickListener { listener.onItemClick(lancamentoModel) }
 
