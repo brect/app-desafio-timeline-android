@@ -8,22 +8,28 @@ import com.blimas.desafiotimelineandroid.R
 import com.blimas.desafiotimelineandroid.service.listener.LancamentosListener
 import com.blimas.desafiotimelineandroid.service.model.LancamentoModel
 import com.blimas.desafiotimelineandroid.utils.FormatValues
-import java.text.NumberFormat
-import java.util.*
 
-class LancamentoSimplesViewHolder(itemView: View, val listener: LancamentosListener) :
+
+class LancamentoDetalhadosViewHolder(itemView: View, val listener: LancamentosListener) :
     RecyclerView.ViewHolder(itemView) {
 
-    private var mContainerItem: ConstraintLayout = itemView.findViewById(R.id.container_item_lancamento)
+    private var mContainerItem: ConstraintLayout =
+        itemView.findViewById(R.id.container_item_lancamento)
+
+    private var mTextMes: TextView = itemView.findViewById(R.id.text_mes)
     private var mTextOrigem: TextView = itemView.findViewById(R.id.text_origem)
     private var mTextValor: TextView = itemView.findViewById(R.id.text_valor)
 
-    fun bindData(lancamentoModel: LancamentoModel) {
+    fun bindData(
+        lancamentoModel: LancamentoModel
+    ) {
 
+        this.mTextMes.text = FormatValues.formatTextoMes(lancamentoModel.mes_lancamento)
         this.mTextOrigem.text = lancamentoModel.origem
         this.mTextValor.text = FormatValues.formatMoneyText(lancamentoModel.valor)
 
         mContainerItem.setOnClickListener { listener.onItemClick(lancamentoModel) }
 
     }
+
 }

@@ -19,7 +19,7 @@ import com.blimas.desafiotimelineandroid.viewmodel.LancamentosViewModel
 import kotlinx.android.synthetic.main.activity_lancamentos_simples.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-class LancamentosActivity : AppCompatActivity() {
+class LancamentosSimplesActivity : AppCompatActivity() {
 
     private lateinit var mViewModel: LancamentosViewModel
     private val mAdapter = LancamentosSimplesAdapter()
@@ -37,19 +37,6 @@ class LancamentosActivity : AppCompatActivity() {
         openDetalhesLancamentos()
 
         observe()
-    }
-
-    private fun openDetalhesLancamentos() {
-        mListener = object : LancamentosListener {
-            override fun onItemClick(param: LancamentoModel) {
-                val intent = Intent(applicationContext, DetalhesLancamentoActivity::class.java)
-                val bundle = Bundle()
-                bundle.putParcelable(LANCAMENTO_ID, param)
-                bundle.putString(CATEGORIA_VALUE, getCategoria(param.categoria))
-                intent.putExtras(bundle)
-                startActivity(intent)
-            }
-        }
     }
 
     override fun onResume() {
@@ -71,8 +58,22 @@ class LancamentosActivity : AppCompatActivity() {
         recycler.adapter = mAdapter
     }
 
+    private fun openDetalhesLancamentos() {
+        mListener = object : LancamentosListener {
+            override fun onItemClick(param: LancamentoModel) {
+                val intent = Intent(applicationContext, DetalhesLancamentoActivity::class.java)
+                val bundle = Bundle()
+                bundle.putParcelable(LANCAMENTO_ID, param)
+                bundle.putString(CATEGORIA_VALUE, getCategoria(param.categoria))
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+        }
+    }
+
     fun getCategoria(categoria: Int): String? {
-        return mViewModel.categorias.value?.get(categoria - 1)?.nome
+        val index = categoria - 1
+        return mViewModel.categorias.value?.get(index)?.nome
     }
 
     private fun observe() {

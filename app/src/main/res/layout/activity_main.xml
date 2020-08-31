@@ -30,12 +30,12 @@
         android:background="@drawable/shape_card"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintTop_toBottomOf="@id/imageLogoItau"
-        app:layout_constraintBottom_toTopOf="@id/buttonLevelTwo"
+        app:layout_constraintBottom_toTopOf="@id/button_lancamentos_detalhados"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <Button
-        android:id="@+id/buttonLevelTwo"
+        android:id="@+id/button_lancamentos_detalhados"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="52dp"

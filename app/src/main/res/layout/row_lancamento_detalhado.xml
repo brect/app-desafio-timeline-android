@@ -1,22 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_item_lancamento"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp">
 
     <TextView
+        android:id="@+id/text_mes"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:text="Mês"
+        android:textColor="@color/gray_dark"
+        android:gravity="center"
+        android:layout_margin="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/image_money"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/line_top_image"
+        android:layout_width="1dp"
+        android:layout_height="16dp"
+        android:background="@color/gray_light"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/image_money"
+        app:layout_constraintStart_toStartOf="@+id/image_money"
+        app:layout_constraintBottom_toTopOf="@+id/image_money" />
+
+    <ImageView
+        android:id="@+id/image_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="@drawable/layer_icon_money"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_mes"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/line_bottom_image"
+        android:layout_width="1dp"
+        android:layout_height="16dp"
+        android:background="@color/gray_light"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/image_money"
+        app:layout_constraintStart_toStartOf="@+id/image_money"
+        app:layout_constraintTop_toBottomOf="@+id/image_money" />
+
+    <TextView
         android:id="@+id/text_origem"
         android:layout_width="0dp"
+        android:layout_marginLeft="12dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:text="texto"
+        android:text="@string/default_text_content"
         android:textColor="@color/colorAccent"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text_valor"
+        app:layout_constraintLeft_toRightOf="@id/image_money"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,18 +65,12 @@
         android:id="@+id/text_valor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:text="origin"
-        app:layout_constraintEnd_toEndOf="@+id/text_origem"
-        app:layout_constraintTop_toBottomOf="@id/text_origem"
-        tools:layout_editor_absoluteY="46dp" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="8dp"
-        android:background="#ececec"
-        app:layout_constraintTop_toBottomOf="@id/text_valor" />
+        android:text="@string/default_money"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/text_origem"
+        app:layout_constraintTop_toBottomOf="@id/text_origem" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,12 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.LancamentosDetalhadosActivity"></activity>
+        <activity
+            android:name=".view.activity.LancamentosDetalhadosActivity"
+            android:parentActivityName=".view.activity.LancamentosSimplesActivity" />
         <activity
             android:name=".view.activity.DetalhesLancamentoActivity"
-            android:parentActivityName=".view.activity.LancamentosActivity" />
+            android:parentActivityName=".view.activity.LancamentosSimplesActivity" />
         <activity
-            android:name=".view.activity.LancamentosActivity"
+            android:name=".view.activity.LancamentosSimplesActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
