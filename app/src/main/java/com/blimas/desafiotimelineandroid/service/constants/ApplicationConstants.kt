@@ -11,4 +11,8 @@ class ApplicationConstants {
         const val CATEGORIA_VALUE = "categoria"
     }
 
+    object CLIENT {
+        const val BASE_URL = "https://desafio-it-server.herokuapp.com/"
+    }
+
 }

@@ -14,4 +14,5 @@ class ValidationListener(message: String = "") {
 
     fun status() = mStatus
     fun errorMessage() = mMessage
+
 }

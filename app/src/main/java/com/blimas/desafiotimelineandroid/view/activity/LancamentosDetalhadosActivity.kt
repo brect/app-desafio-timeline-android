@@ -10,7 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blimas.desafiotimelineandroid.R
-import com.blimas.desafiotimelineandroid.service.constants.ApplicationConstants
+import com.blimas.desafiotimelineandroid.service.constants.ApplicationConstants.BUNDLE.CATEGORIA_VALUE
+import com.blimas.desafiotimelineandroid.service.constants.ApplicationConstants.BUNDLE.LANCAMENTO_ID
 import com.blimas.desafiotimelineandroid.service.listener.LancamentosListener
 import com.blimas.desafiotimelineandroid.service.model.LancamentoModel
 import com.blimas.desafiotimelineandroid.utils.FormatValues
@@ -65,9 +66,9 @@ class LancamentosDetalhadosActivity : AppCompatActivity() {
             override fun onItemClick(param: LancamentoModel) {
                 val intent = Intent(applicationContext, DetalhesLancamentoActivity::class.java)
                 val bundle = Bundle()
-                bundle.putParcelable(ApplicationConstants.BUNDLE.LANCAMENTO_ID, param)
+                bundle.putParcelable(LANCAMENTO_ID, param)
                 bundle.putString(
-                    ApplicationConstants.BUNDLE.CATEGORIA_VALUE,
+                    CATEGORIA_VALUE,
                     getCategoria(param.categoria)
                 )
                 intent.putExtras(bundle)
@@ -96,7 +97,6 @@ class LancamentosDetalhadosActivity : AppCompatActivity() {
                     .show()
                 progress_bar.visibility = View.GONE
             }
-
         })
 
         mViewModel.balancoGastos.observe(this, Observer {

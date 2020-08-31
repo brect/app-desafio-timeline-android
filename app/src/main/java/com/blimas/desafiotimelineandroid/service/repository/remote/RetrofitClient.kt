@@ -1,5 +1,6 @@
 package com.blimas.desafiotimelineandroid.service.repository.remote
 
+import com.blimas.desafiotimelineandroid.service.constants.ApplicationConstants.CLIENT.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -9,7 +10,6 @@ class RetrofitClient private constructor(){
     companion object{
 
         private lateinit var mRetrofit: Retrofit
-        private val BASE_URL = "https://desafio-it-server.herokuapp.com/"
 
         fun getRetrofitInstance(): Retrofit {
 

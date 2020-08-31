@@ -7,5 +7,11 @@
     <string name="default_text_content">Conteúdo</string>
     <string name="default_categoria">Categoria</string>
     <string name="default_origem">Origem</string>
+    <string name="gasto_total">Gasto total</string>
+    <string name="btn_lancamentos">Lançamentos</string>
+    <string name="btn_lancamentos_detalhados">Lançamentos Detalhados</string>
+    <string name="mes">Mês</string>
+    <string name="icone_dinheiro_lista">Icone dinheiro lista</string>
+    <string name="logo_itau">Logo itaú</string>
 
 </resources>

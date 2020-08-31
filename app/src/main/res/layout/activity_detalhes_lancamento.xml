@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CCC4C4C4"
+    android:background="@color/gray_light"
     tools:context=".view.activity.DetalhesLancamentoActivity">
 
     <include
@@ -12,7 +12,7 @@
         layout="@layout/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/recycler_lancamentos_simples"
+        app:layout_constraintBottom_toTopOf="@+id/container_title_detalhes"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -46,8 +46,8 @@
         android:layout_margin="24dp"
         android:background="@drawable/shape_card"
         android:elevation="1dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:padding="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container_title_detalhes">
 
@@ -57,8 +57,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/default_origem"
-            android:textSize="32sp"
             android:textColor="@color/gray_dark"
+            android:textSize="32sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -84,11 +84,11 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="@color/black"
             android:gravity="center"
-            android:textStyle="bold"
             android:text="@string/default_money"
+            android:textColor="@color/black"
             android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_categoria" />

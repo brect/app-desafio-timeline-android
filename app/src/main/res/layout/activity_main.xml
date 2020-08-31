@@ -4,35 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1731F"
+    android:background="@color/colorPrimaryDark"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageLogoItau"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="128dp"
-        android:src="@drawable/logo_itau"
-        app:layout_constraintVertical_bias="0.4"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/logo_itau"
+        android:contentDescription="@string/logo_itau"
         app:layout_constraintBottom_toTopOf="@id/button_lancamentos"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/button_lancamentos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="52dp"
-        android:text="Lançamentos"
         android:layout_marginVertical="8dp"
         android:background="@drawable/shape_card"
+        android:text="@string/btn_lancamentos"
         android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintTop_toBottomOf="@id/imageLogoItau"
         app:layout_constraintBottom_toTopOf="@id/button_lancamentos_detalhados"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageLogoItau" />
 
     <Button
         android:id="@+id/button_lancamentos_detalhados"
@@ -40,9 +41,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="52dp"
         android:layout_marginVertical="4dp"
-        android:text="Lançamentos Detalhados"
         android:background="@drawable/shape_card"
-        android:textColor="#F1731F"
+        android:text="@string/btn_lancamentos_detalhados"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
