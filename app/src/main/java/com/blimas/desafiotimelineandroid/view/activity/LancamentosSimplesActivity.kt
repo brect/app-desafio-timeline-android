@@ -42,8 +42,8 @@ class LancamentosSimplesActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         mAdapter.attachListener(mListener)
-        mViewModel.getAllReleases()
-        mViewModel.getAllCategories()
+        mViewModel.getLancamentos()
+        mViewModel.getCategorias()
     }
 
     private fun configToolbar() {
@@ -53,7 +53,7 @@ class LancamentosSimplesActivity : AppCompatActivity() {
     }
 
     private fun setRecyclerAndAdapter() {
-        val recycler = findViewById<RecyclerView>(R.id.recycler_lancamentos)
+        val recycler = findViewById<RecyclerView>(R.id.recycler_lancamentos_simples)
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = mAdapter
     }

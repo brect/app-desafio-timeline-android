@@ -16,20 +16,38 @@ class LancamentoDetalhadosViewHolder(itemView: View, val listener: LancamentosLi
     private var mContainerItem: ConstraintLayout =
         itemView.findViewById(R.id.container_item_lancamento)
 
-    private var mTextMes: TextView = itemView.findViewById(R.id.text_mes)
+    var mContainerTituloMes: ConstraintLayout =
+        itemView.findViewById(R.id.container_titulo_mes)
+    private var mTextTituloMes: TextView = itemView.findViewById(R.id.text_titulo_mes)
+    private var mTextTituloValorMes: TextView = itemView.findViewById(R.id.text_titulo_valor)
+
+    var mTextMes: TextView = itemView.findViewById(R.id.text_mes)
     private var mTextOrigem: TextView = itemView.findViewById(R.id.text_origem)
     private var mTextValor: TextView = itemView.findViewById(R.id.text_valor)
 
     fun bindData(
-        lancamentoModel: LancamentoModel
+        lancamento: LancamentoModel
     ) {
+        this.mTextMes.text = FormatValues.formatTextoMes(lancamento.mes_lancamento)
+        this.mTextOrigem.text = lancamento.origem
+        this.mTextValor.text = FormatValues.formatMoneyText(lancamento.valor)
+        mContainerTituloMes.visibility = View.GONE
 
-        this.mTextMes.text = FormatValues.formatTextoMes(lancamentoModel.mes_lancamento)
-        this.mTextOrigem.text = lancamentoModel.origem
-        this.mTextValor.text = FormatValues.formatMoneyText(lancamentoModel.valor)
-
-        mContainerItem.setOnClickListener { listener.onItemClick(lancamentoModel) }
-
+        mContainerItem.setOnClickListener { listener.onItemClick(lancamento) }
     }
 
+
+    fun bindDataTituloMes(lancamento: LancamentoModel, mGroupList: Map<Int, Double>) {
+        val value = mGroupList[lancamento.mes_lancamento]?.let {
+            FormatValues.formatMoneyText(
+                it
+            )
+        }
+        mTextTituloMes.text = FormatValues.formatTextoMes(lancamento.mes_lancamento)
+        mTextTituloValorMes.text = value
+    }
+
+    fun setVisibilityContainerTituloMes(view: Int) {
+        mContainerTituloMes.visibility = view
+    }
 }

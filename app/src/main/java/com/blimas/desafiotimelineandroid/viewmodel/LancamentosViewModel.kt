@@ -22,10 +22,16 @@ class LancamentosViewModel(application: Application) : AndroidViewModel(applicat
     private val mCategoriasList = MutableLiveData<List<CategoriasModel>>()
     var categorias: LiveData<List<CategoriasModel>> = mCategoriasList
 
+    private val mGastosList = MutableLiveData<Map<Int, Double>>()
+    var gastos: LiveData<Map<Int, Double>> = mGastosList
+
+    private val mBalancoGastosList = MutableLiveData<Map<Int, List<LancamentoModel>>>()
+    var balancoGastos: LiveData<Map<Int, List<LancamentoModel>>> = mBalancoGastosList
+
     private val mValidationListener = MutableLiveData<ValidationListener>()
     var validation: LiveData<ValidationListener> = mValidationListener
 
-    fun getAllReleases(){
+    fun getLancamentos() {
         mLancamentosRepository.getAll(object : ApiListener<List<LancamentoModel>> {
             override fun onSuccess(param: List<LancamentoModel>) {
                 mLancamentosList.value = param
@@ -38,7 +44,7 @@ class LancamentosViewModel(application: Application) : AndroidViewModel(applicat
         })
     }
 
-    fun getAllCategories(){
+    fun getCategorias() {
         mCategoriasRepository.getAll(object : ApiListener<List<CategoriasModel>> {
             override fun onSuccess(param: List<CategoriasModel>) {
                 mCategoriasList.value = param
@@ -51,4 +57,12 @@ class LancamentosViewModel(application: Application) : AndroidViewModel(applicat
         })
     }
 
+    fun getGastosMensais(lancamentos: List<LancamentoModel>) {
+        mGastosList.value = lancamentos.groupBy { it.mes_lancamento }.mapValues { it -> it.value.sumByDouble { it.valor }}
+
+    }
+
+    fun getBalancoGastosMensais(lancamentos: List<LancamentoModel>) {
+        mBalancoGastosList.value = lancamentos.groupBy { it.mes_lancamento }
+    }
 }

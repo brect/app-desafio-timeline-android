@@ -8,8 +8,6 @@ import com.blimas.desafiotimelineandroid.R
 import com.blimas.desafiotimelineandroid.service.listener.LancamentosListener
 import com.blimas.desafiotimelineandroid.service.model.LancamentoModel
 import com.blimas.desafiotimelineandroid.utils.FormatValues
-import java.text.NumberFormat
-import java.util.*
 
 class LancamentoSimplesViewHolder(itemView: View, val listener: LancamentosListener) :
     RecyclerView.ViewHolder(itemView) {

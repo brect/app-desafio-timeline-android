@@ -13,9 +13,11 @@ import com.blimas.desafiotimelineandroid.R
 import com.blimas.desafiotimelineandroid.service.constants.ApplicationConstants
 import com.blimas.desafiotimelineandroid.service.listener.LancamentosListener
 import com.blimas.desafiotimelineandroid.service.model.LancamentoModel
+import com.blimas.desafiotimelineandroid.utils.FormatValues
 import com.blimas.desafiotimelineandroid.view.adapter.LancamentosDetalhadosAdapter
 import com.blimas.desafiotimelineandroid.viewmodel.LancamentosViewModel
-import kotlinx.android.synthetic.main.activity_lancamentos_simples.*
+import kotlinx.android.synthetic.main.activity_lancamentos_detalhados.*
+import kotlinx.android.synthetic.main.activity_lancamentos_simples.progress_bar
 import kotlinx.android.synthetic.main.toolbar.*
 
 class LancamentosDetalhadosActivity : AppCompatActivity() {
@@ -42,8 +44,8 @@ class LancamentosDetalhadosActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         mAdapter.attachListener(mListener)
-        mViewModel.getAllReleases()
-        mViewModel.getAllCategories()
+        mViewModel.getLancamentos()
+        mViewModel.getCategorias()
     }
 
     private fun configToolbar() {
@@ -64,7 +66,10 @@ class LancamentosDetalhadosActivity : AppCompatActivity() {
                 val intent = Intent(applicationContext, DetalhesLancamentoActivity::class.java)
                 val bundle = Bundle()
                 bundle.putParcelable(ApplicationConstants.BUNDLE.LANCAMENTO_ID, param)
-                bundle.putString(ApplicationConstants.BUNDLE.CATEGORIA_VALUE, getCategoria(param.categoria))
+                bundle.putString(
+                    ApplicationConstants.BUNDLE.CATEGORIA_VALUE,
+                    getCategoria(param.categoria)
+                )
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
@@ -80,7 +85,33 @@ class LancamentosDetalhadosActivity : AppCompatActivity() {
 
         mViewModel.lancamentos.observe(this, Observer {
             if (it.count() > 0) {
+                mViewModel.getGastosMensais(it)
+                mViewModel.getBalancoGastosMensais(it)
+
+                text_gasto_total.text = getGastoTotal(it)
+
                 mAdapter.updateListener(it)
+            } else {
+                Toast.makeText(this, getString(R.string.ERROR_UNEXPECTED), Toast.LENGTH_SHORT)
+                    .show()
+                progress_bar.visibility = View.GONE
+            }
+
+        })
+
+        mViewModel.balancoGastos.observe(this, Observer {
+            if (it.count() > 0) {
+                mAdapter.updateBalanceGroupListener(it)
+            } else {
+                Toast.makeText(this, getString(R.string.ERROR_UNEXPECTED), Toast.LENGTH_SHORT)
+                    .show()
+            }
+            progress_bar.visibility = View.GONE
+        })
+
+        mViewModel.gastos.observe(this, Observer {
+            if (it.count() > 0) {
+                mAdapter.updateGroupListener(it)
             } else {
                 Toast.makeText(this, getString(R.string.ERROR_UNEXPECTED), Toast.LENGTH_SHORT)
                     .show()
@@ -92,4 +123,9 @@ class LancamentosDetalhadosActivity : AppCompatActivity() {
             Toast.makeText(this, it.errorMessage(), Toast.LENGTH_SHORT).show()
         })
     }
+
+    private fun getGastoTotal(it: List<LancamentoModel>): String {
+        return FormatValues.formatMoneyText(it.sumByDouble { it.valor })
+    }
+
 }
